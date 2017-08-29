@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/syzer/twitter-marketing-bot/issues"
   },
-  "homepage": "https://github.com/syzer/twitter-marketing-bot#readme"
+  "homepage": "https://github.com/syzer/twitter-marketing-bot#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0"
+  }
 }
