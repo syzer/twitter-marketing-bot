@@ -18,3 +18,9 @@ npm start
 gym
 programing,
 photography
+
+# show stored twitts 
+
+```bash
+npm run view-twitts
+```
