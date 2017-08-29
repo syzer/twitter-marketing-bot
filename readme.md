@@ -1,6 +1,8 @@
 # wat
 
-marketing tool for twitter
+Marketing tool for twitter
+
+(requires node 8+)
 
 # how
 
@@ -15,9 +17,19 @@ npm start
 ```
 
 # use case
-gym
-programing,
-photography
+## gym
+## programing
+## photography
+
+Extract tweets and build ML pipeline with:
+```bash
+node src/newClassifier.js
+```
+
+Use classifier
+```bash
+node src/useClassifier.js
+```
 
 # show stored twitts 
 

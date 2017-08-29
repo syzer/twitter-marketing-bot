@@ -7,7 +7,8 @@
     "start": "node src/loadTwitts",
     "view-twitts": "./node_modules/.bin/lev ./data/twitts",
     "lint": "./node_modules/.bin/eslint src --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --testRegex=./test/",
+    "test-watch": "./node_modules/.bin/jest --watchAll --maxWorkers=16 --testRegex=./test/"
   },
   "repository": {
     "type": "git",
@@ -37,13 +38,18 @@
     "eslint": "^4.5.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jest": "^20.0.3",
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "jest": "^20.0.4",
     "lev": "^3.3.1",
     "pre-commit": "^1.2.2"
   },
   "engines": {
     "node": ">=8.0.0"
+  },
+  "jest": {
+    "verbose": true
   }
 }
