@@ -27,14 +27,7 @@ const category2 = [
   'photographhy'
 ].map(newQuery)
 
-const getTweetTexts = (searchResult) => {
-  const result = []
-  const statuses = searchResult.statuses
-  for (const tweet of statuses) {
-    result.push(tweet.text)
-  }
-  return result
-}
+const getTweetTexts = ({statuses}) => statuses.map(({text}) => text)
 
 const newCategory = (category = category1, categoryName = 'category1') => Promise.all(
   category.map(params => client.get('search/tweets', params).then(getTweetTexts))
@@ -44,6 +37,5 @@ const newCategory = (category = category1, categoryName = 'category1') => Promis
 
 newCategory()
   .then(() => newCategory(category2, 'category2'))
-  .then(() => nb.classifyAsync('gym')
+  .then(() => nb.classifyAsync('code')
     .then(console.log))
-
