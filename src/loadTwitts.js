@@ -1,4 +1,5 @@
 const Twitter = require('twitter')
+const q = require('bluebird')
 const { consumer_key, consumer_secret, access_token_key, access_token_secret } = require('./config')
 const client = new Twitter({
   consumer_key,
@@ -8,9 +9,12 @@ const client = new Twitter({
 })
 
 const params = { screen_name: 'nodejs' }
-client.get('statuses/user_timeline', params, (error, tweets, response) => {
-  if (!error) {
-    console.log(tweets)
-  }
-  console.error(error)
+
+const promissedGet = new Promise((resolve, reject) => {
+
 })
+q.promisifyAll(client)
+
+client.getAsync('statuses/user_timeline', params)
+  .then(console.warn)
+  .catch(console.error)
