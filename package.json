@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/syzer/twitter-marketing-bot#readme",
   "dependencies": {
-    "dotenv": "^4.0.0"
+    "dotenv": "^4.0.0",
+    "twitter": "^1.7.1"
   }
 }
