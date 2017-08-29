@@ -12,3 +12,5 @@ cp .env.dist .env
 npm start
 ```
 
+# use case
+gym
