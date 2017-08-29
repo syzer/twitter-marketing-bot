@@ -36,6 +36,9 @@ node src/useClassifier.js
 ```bash
 npm run view-twitts
 ```
+and then:
+ls()
+get(keyName)
 
 # test
 ```bash
