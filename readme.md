@@ -36,3 +36,8 @@ node src/useClassifier.js
 ```bash
 npm run view-twitts
 ```
+
+# test
+```bash
+npm test
+```
