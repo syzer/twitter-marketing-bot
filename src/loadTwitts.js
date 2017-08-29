@@ -4,7 +4,7 @@ const client = new Twitter({
   consumer_key,
   consumer_secret,
   access_token_key,
-  access_token_secret,
+  access_token_secret
 })
 
 const params = { q: 'learning to code' }
