@@ -10,11 +10,8 @@ const client = new Twitter({
 
 const params = { screen_name: 'nodejs' }
 
-const promissedGet = new Promise((resolve, reject) => {
-
-})
 q.promisifyAll(client)
 
 client.getAsync('statuses/user_timeline', params)
-  .then(console.warn)
+  .then(console.log)
   .catch(console.error)
