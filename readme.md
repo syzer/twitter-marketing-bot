@@ -1,6 +1,7 @@
 # wat
 
-Marketing tool for twitter
+Marketing tool for twitter,
+Find potential customers interested in ex: going to your gym, or intrereted in your hosted event (like leanpoker).
 
 (requires node 8+)
 
