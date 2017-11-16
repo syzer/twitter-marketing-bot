@@ -1,13 +1,10 @@
 // @flow
 // extract tweets and save it to db
-import type { Category, Twitts } from '../type'
-
 const Twitter = require('twitter')
-const uuid = require('uuid')
 const { flow, flattenDeep, uniq } = require('lodash')
 
 const { tokenizeAndStem } = require('./parser')
-const db = require('levelup')('./data/twitts')
+const { saveToDb } = require('../db')
 
 const {
   count,
@@ -46,20 +43,6 @@ const category2 = [
 
 // TODO types :Twitts
 const extractTweets = ({ statuses }) => statuses.map(({ text }) => text)
-
-const newKey = (category: Category) => `${category}-${uuid.v1()}`
-
-const newPutOperation = (category: Category) => value => ({
-  type: 'put',
-  key: newKey(category),
-  value
-})
-
-// @see https://github.com/Level/levelup#batch
-const saveToDb = (category: Category) => (twitts: Twitts) => new Promise((resolve, reject) =>
-  db.batch(twitts.map(newPutOperation(category)), err =>
-    err ? reject(err) : resolve(twitts)
-  ))
 
 const queryTweets = (searchQueries = category1) =>
   Promise.all(
