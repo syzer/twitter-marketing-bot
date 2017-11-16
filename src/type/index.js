@@ -36,7 +36,7 @@ export type User = {
   contributors_enabled: boolean, // false,
   is_translator: boolean, // false,
   is_translation_enabled: boolean, // false,
-  profile_background_color: 'FFFFFF',
+  profile_background_color: Color, // 'FFFFFF',
   profile_background_image_url: UrlText, // 'http://pbs.twimg.com/profile_background_images/378800000126035460/YaQoCVF5.jpeg',
   profile_background_image_url_https: UrlText, // 'https://pbs.twimg.com/profile_background_images/378800000126035460/YaQoCVF5.jpeg',
   profile_background_tile: boolean, // false,

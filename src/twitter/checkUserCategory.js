@@ -3,6 +3,8 @@
 import type { Twitt } from '../type'
 
 const _ = require('lodash')
+const R = require('ramda')
+const { pluck } = R
 const Twitter = require('twitter')
 const classify = require('../classifier/classify')
 
@@ -29,16 +31,16 @@ const checkUserCategory = (user: string): Promise<Array<Twitt>> =>
 const user = 'AlainFrapolli'
 
 checkUserCategory(user)
+  .then(pluck('text'))
   .then(twitts =>
     Promise.all(twitts
-      .map(({ text }) => text)
-      .map(classify)))
-  .then(categories => _(categories)
-    .countBy(a => a === 'category1')
-    .toPairs()
-    .map(e => e.pop())
-    .value())
-  .then(([category1, category2]) =>
-    category1 > category2 ? 'category1' : 'category2')
-  .then(e => console.log(`User will more like category: ${e}`))
+      .map(classify))
+      .then(categories => _(categories)
+        .countBy(a => a === 'category1')
+        .toPairs()
+        .map(e => e.pop())
+        .value())
+      .then(([category1, category2]) =>
+        category1 > category2 ? 'category1' : 'category2')
+      .then(e => console.log(`User will more like category: ${e}`)))
   .catch(console.error)
