@@ -9,7 +9,7 @@
     "flow": "flow",
     "lint": "./node_modules/.bin/eslint src --fix",
     "prepublish": "npm run build",
-    "start": "babel-node src/classifier/train.js",
+    "start": "babel-node src/classifier/train.mjs",
     "test": "jest --testRegex=./test/",
     "test-watch": "./node_modules/.bin/jest --watchAll --maxWorkers=16 --testRegex=./test/",
     "view-twitts": "./node_modules/.bin/lev ./data/twitts"
@@ -47,6 +47,7 @@
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.2",
     "babel-preset-flow": "^6.23.0",
+    "babel-preset-mjs": "0.0.4",
     "eslint": "^4.11.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-flowtype": "^2.39.1",

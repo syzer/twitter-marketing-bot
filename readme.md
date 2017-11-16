@@ -28,7 +28,7 @@ Find people that would be potentially interested about you new product/promotion
 
 Extract tweets and build ML pipeline with:
 ```bash
-node src/train.js
+node src/train.mjs
 ```
 
 Use classifier, to figure out what category people are interested.

@@ -1,13 +1,11 @@
 // @flow
 // extract tweets and save it to db
-import type { Category, Twitts } from '../type'
+import { saveToDb } from '../db/index.mjs'
 
 const Twitter = require('twitter')
-const uuid = require('uuid')
 const { flow, flattenDeep, uniq } = require('lodash')
 
 const { tokenizeAndStem } = require('./parser')
-const db = require('levelup')('./data/twitts')
 
 const {
   count,
@@ -47,20 +45,6 @@ const category2 = [
 // TODO types :Twitts
 const extractTweets = ({ statuses }) => statuses.map(({ text }) => text)
 
-const newKey = (category: Category) => `${category}-${uuid.v1()}`
-
-const newPutOperation = (category: Category) => value => ({
-  type: 'put',
-  key: newKey(category),
-  value
-})
-
-// @see https://github.com/Level/levelup#batch
-const saveToDb = (category: Category) => (twitts: Twitts) => new Promise((resolve, reject) =>
-  db.batch(twitts.map(newPutOperation(category)), err =>
-    err ? reject(err) : resolve(twitts)
-  ))
-
 const queryTweets = (searchQueries = category1) =>
   Promise.all(
     searchQueries
@@ -69,9 +53,8 @@ const queryTweets = (searchQueries = category1) =>
     .then(flow(flattenDeep, uniq))
     .then(twitts => twitts.map(tokenizeAndStem))
 
-module.exports = Promise.all([
-  queryTweets(category1).then(saveToDb('category1')),
-  queryTweets(category2).then(saveToDb('category2'))
-])
-// .then(console.log)
-// .catch(console.error)
+const load = () =>     console.error('=====\n\ndsdsas')
+
+export {
+  load
+}
