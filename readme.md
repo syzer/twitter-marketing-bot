@@ -28,24 +28,40 @@ Find people that would be potentially interested about you new product/promotion
 
 Extract tweets and build ML pipeline with:
 ```bash
-node src/newClassifier.js
+node src/train.js
 ```
 
-Use classifier
+Use classifier, to figure out what category people are interested.
+
 ```bash
-node src/useClassifier.test.js
+node src/classifier/classify.test.js
 ```
 
-# show stored twitts 
-
+# Show stored twitts 
 ```bash
 npm run view-twitts
 ```
 and then:
+```js
 ls()
 get(keyName)
+```
 
-# test
+
+# Test
+## Type checking
+```bash
+npm run flow
+```
+
+## Unit tests
 ```bash
 npm test
+```
+
+
+# Development
+```bash
+npm i -g babel-node
+babel-node --version
 ```

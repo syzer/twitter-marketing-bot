@@ -1,9 +1,14 @@
 module.exports = {
-  extends: 'standard',
+  extends: ['standard', 'plugin:flowtype/recommended'],
   plugins: [
-    'jest'
+    'jest',
+    'flowtype'
   ],
   env: {
     'jest/globals': true
+  },
+  rules: {
+    'object-curly-spacing': ['error', 'always'],
+    'eol-last': ['error', 'always']
   }
 }

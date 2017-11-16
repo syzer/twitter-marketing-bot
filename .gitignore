@@ -59,4 +59,6 @@ typings/
 # dotenv environment variables file
 .env
 
-
+# flow striped build
+/build/
+/data/twitts.example.json
