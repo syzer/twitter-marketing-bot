@@ -18,6 +18,10 @@ npm start
 ```
 
 # use case
+
+Find people that would be potentially interested about you new product/promotion.
+
+
 ## gym
 ## programing
 ## photography
