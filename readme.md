@@ -29,7 +29,7 @@ node src/newClassifier.js
 
 Use classifier
 ```bash
-node src/useClassifier.js
+node src/useClassifier.test.js
 ```
 
 # show stored twitts 

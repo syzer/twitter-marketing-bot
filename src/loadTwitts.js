@@ -1,10 +1,10 @@
 // extract tweets and save it to db
-const _ = require('lodash')
-const natural = require('natural')
-natural.PorterStemmer.attach()
-const db = require('levelup')('./data/twitts')
 const Twitter = require('twitter')
 const uuid = require('uuid')
+const {flow, flattenDeep, uniq} = require('lodash')
+
+const {tokenizeAndStem} = require('../src/twitter/parser')
+const db = require('levelup')('./data/twitts')
 
 const {
   count,
@@ -13,6 +13,7 @@ const {
   access_token_key,
   access_token_secret
 } = require('./config')
+
 const client = new Twitter({
   consumer_key,
   consumer_secret,
@@ -20,12 +21,16 @@ const client = new Twitter({
   access_token_secret
 })
 
-const newQuery = e => ({ q: e, count })
+const newQuery = e => ({q: e + ' -RT', count})
 
-// interesting
+// interesting ( programming )
 const category1 = [
   'learning to code',
-  'love software'
+  'love software',
+  'javascript',
+  'java',
+  'VSAppCenter',
+  'hacking'
 ].map(newQuery)
 
 // not interesting
@@ -35,10 +40,7 @@ const category2 = [
   'photographhy'
 ].map(newQuery)
 
-const getTweetTexts = ({ statuses }) => statuses.map(({ text }) => text)
-
-// TODO write better tokenizer and steamer
-const tokenizeAndStem = str => str.tokenizeAndStem().join(' ')
+const extractTweets = ({statuses}) => statuses.map(({text}) => text)
 
 const newKey = categoryName => `${categoryName}-${uuid.v1()}`
 
@@ -54,20 +56,17 @@ const saveToDb = categoryName => (twitts) => new Promise((resolve, reject) =>
     err ? reject(err) : resolve(twitts)
   ))
 
-const newCategory = (category = category1, categoryName = 'category1') => Promise.all(
-  category.map(params => client.get('search/tweets', params).then(getTweetTexts))
-)
-  .then(_.flattenDeep)
-  .then(_.uniq)
-  .then(twitts => twitts.map(tokenizeAndStem))
+const queryTweets = (searchQueries = category1) =>
+  Promise.all(
+    searchQueries
+      .map(q => client.get('search/tweets', q)
+        .then(extractTweets)))
+    .then(flow(flattenDeep, uniq))
+    .then(twitts => twitts.map(tokenizeAndStem))
 
 module.exports = Promise.all([
-  newCategory(category1, 'category1').then(saveToDb('category1')),
-  newCategory(category2, 'category2').then(saveToDb('category2'))
+  queryTweets(category1).then(saveToDb('category1')),
+  queryTweets(category2).then(saveToDb('category2'))
 ])
-  .then(([category1, category2]) => ({
-    category1,
-    category2
-  }))
-  // .then(console.log)
+// .then(console.log)
   .catch(console.error)
