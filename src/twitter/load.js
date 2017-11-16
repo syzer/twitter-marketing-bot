@@ -1,9 +1,12 @@
+// @flow
 // extract tweets and save it to db
+import type { Category, Twitts } from '../type'
+
 const Twitter = require('twitter')
 const uuid = require('uuid')
-const {flow, flattenDeep, uniq} = require('lodash')
+const { flow, flattenDeep, uniq } = require('lodash')
 
-const {tokenizeAndStem} = require('../src/twitter/parser')
+const { tokenizeAndStem } = require('./parser')
 const db = require('levelup')('./data/twitts')
 
 const {
@@ -12,7 +15,7 @@ const {
   consumer_secret,
   access_token_key,
   access_token_secret
-} = require('./config')
+} = require('../config')
 
 const client = new Twitter({
   consumer_key,
@@ -21,9 +24,9 @@ const client = new Twitter({
   access_token_secret
 })
 
-const newQuery = e => ({q: e + ' -RT', count})
+const newQuery = e => ({ q: e + ' -RT', count })
 
-// interesting ( programming )
+// Interesting categories ( programming )
 const category1 = [
   'learning to code',
   'love software',
@@ -37,22 +40,24 @@ const category1 = [
 const category2 = [
   'going to gym',
   'learning to take a pictures',
-  'photographhy'
+  'photography',
+  'flowers'
 ].map(newQuery)
 
-const extractTweets = ({statuses}) => statuses.map(({text}) => text)
+// TODO types :Twitts
+const extractTweets = ({ statuses }) => statuses.map(({ text }) => text)
 
-const newKey = categoryName => `${categoryName}-${uuid.v1()}`
+const newKey = (category: Category) => `${category}-${uuid.v1()}`
 
-const newPutOperation = categoryName => value => ({
+const newPutOperation = (category: Category) => value => ({
   type: 'put',
-  key: newKey(categoryName),
+  key: newKey(category),
   value
 })
 
 // @see https://github.com/Level/levelup#batch
-const saveToDb = categoryName => (twitts) => new Promise((resolve, reject) =>
-  db.batch(twitts.map(newPutOperation(categoryName)), err =>
+const saveToDb = (category: Category) => (twitts: Twitts) => new Promise((resolve, reject) =>
+  db.batch(twitts.map(newPutOperation(category)), err =>
     err ? reject(err) : resolve(twitts)
   ))
 
@@ -69,4 +74,4 @@ module.exports = Promise.all([
   queryTweets(category2).then(saveToDb('category2'))
 ])
 // .then(console.log)
-  .catch(console.error)
+// .catch(console.error)

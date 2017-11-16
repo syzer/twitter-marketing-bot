@@ -1,3 +1,4 @@
+// @flow
 require('dotenv').config()
 
 const config = {

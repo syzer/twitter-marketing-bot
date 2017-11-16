@@ -1,4 +1,4 @@
-const classify = require('../src/useClassifier')
+const classify = require('../../src/classifier/classify')
 
 test('category 1', () =>
   classify('code is what i do')
