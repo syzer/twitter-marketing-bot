@@ -3,8 +3,6 @@
 Marketing tool for twitter,
 Find potential customers interested in ex: going to your gym, or intrereted in your hosted event (like leanpoker).
 
-(requires node 8+)
-
 # how
 
 ```bash
@@ -17,14 +15,20 @@ cp .env.dist .env
 npm start
 ```
 
+# requirements
+
+- node 8+
+- npm
+
+
 # use case
 
-Find people that would be potentially interested about you new product/promotion.
+Find people that would be potentially interested about you new product/promotion, like:
 
 
-## gym
-## programing
-## photography
+- ### gym
+- ### programing
+- ### photography
 
 Extract tweets and build ML pipeline with:
 ```bash
