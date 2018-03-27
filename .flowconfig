@@ -7,5 +7,7 @@
 [lints]
 
 [options]
+emoji=true
+suppress_comment=\\(.\\|\n\\)*\\$FlowOk
 
 [strict]

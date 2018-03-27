@@ -1,9 +1,13 @@
 // @flow
-const { flow } = require('lodash')
-const bayes = require('syzer-level-naive-bayes')
-const db = require('level')('./data/db')
+import { pipe } from 'ramda'
+import bayes from 'syzer-level-naive-bayes'
+import level from 'level'
+
+import { tokenizeAndStem } from '../twitter/parser'
+
+const db = level('./data/db')
 const nb = bayes(db)
 
-const { tokenizeAndStem } = require('../twitter/parser')
+const classify = pipe(tokenizeAndStem, nb.classifyAsync)
 
-module.exports = flow(tokenizeAndStem, nb.classifyAsync)
+export default classify

@@ -1,4 +1,4 @@
-const { tokenizeAndStem } = require('../../src/twitter/parser')
+import { tokenizeAndStem } from '../../src/twitter/parser'
 
 test('stemming and tokenizing', () =>
   expect(tokenizeAndStem(`McAfee's own anti-hacking service exposed users to banking malware`))

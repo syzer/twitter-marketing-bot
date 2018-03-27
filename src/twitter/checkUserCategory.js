@@ -2,11 +2,11 @@
 // TODO nodemon -q -w ./src/ -e js -x 'babel-node src/twitter/checkUserCategory.js'
 import type { Twitt } from '../type'
 
-const _ = require('lodash')
-const R = require('ramda')
-const { pluck } = R
-const Twitter = require('twitter')
-const classify = require('../classifier/classify')
+import _ from 'lodash'
+import { pluck } from 'ramda'
+import Twitter from 'twitter'
+
+import classify from '../classifier/classify'
 
 const {
   consumer_key,

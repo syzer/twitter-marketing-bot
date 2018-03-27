@@ -1,6 +1,7 @@
 // @flow
-const natural = require('natural')
-const { flow, join } = require('lodash')
+import natural from 'natural'
+import { join } from 'lodash'
+import { pipe } from 'ramda'
 
 const porterStemm = natural.PorterStemmer.tokenizeAndStem
 
@@ -19,17 +20,13 @@ const isEmoji = /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff]
 const joinWords = (arr: []): string => join(arr, ' ')
 
 const addEmoji = (arr: [string], arr2: Array<string> | null): [string] => arr2
-  // $FlowFixMe
+  // $FlowOk
   ? arr.concat(arr2)
   : arr
 
 const tokenize = (str: string) => addEmoji(
   porterStemm(str),
-  // $FlowFixMe
+  // $FlowOk
   str.match(isEmoji))
 
-const tokenizeAndStem = flow(parseTweet, tokenize, joinWords)
-
-module.exports = {
-  tokenizeAndStem
-}
+export const tokenizeAndStem = pipe(parseTweet, tokenize, joinWords)

@@ -1,8 +1,10 @@
 // @flow
 import type { BayesClassifier } from '../type/index'
 
-const bayes = require('syzer-level-naive-bayes')
-const db = require('level')('./data/db')
+import bayes from 'syzer-level-naive-bayes'
+import level from 'level'
+
+const db = level('./data/db')
 const nb: BayesClassifier = bayes(db)
 
 module.exports = require('../twitter/load')

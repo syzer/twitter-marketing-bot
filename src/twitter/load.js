@@ -1,10 +1,10 @@
 // @flow
 // extract tweets and save it to db
-const Twitter = require('twitter')
-const { flow, flattenDeep, uniq } = require('lodash')
+import Twitter from 'twitter'
+import { flow, flattenDeep, uniq } from 'lodash'
 
-const { tokenizeAndStem } = require('./parser')
-const { saveToDb } = require('../db')
+import { tokenizeAndStem } from './parser'
+import { saveToDb } from '../db'
 
 const {
   count,
