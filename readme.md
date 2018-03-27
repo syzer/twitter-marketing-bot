@@ -23,8 +23,8 @@ npm start
 
 # use case
 
+AKA leads generator.
 Find people that would be potentially interested about you new product/promotion, like:
-
 
 - ### gym
 - ### programing
