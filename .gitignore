@@ -62,3 +62,4 @@ typings/
 # flow striped build
 /build/
 /data/twitts.example.json
+__snapshots__

@@ -1,6 +1,6 @@
 {
   "name": "twitter-marketing-bot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Twitter marketing ML advisor",
   "main": "index.js",
   "scripts": {
@@ -15,9 +15,11 @@
     "view-twitts": "./node_modules/.bin/lev ./data/twitts"
   },
   "keywords": [
+    "leads generator",
     "twitter",
     "marketing",
-    "natural lanuage processing"
+    "natural lanuage processing",
+    "social media"
   ],
   "repository": {
     "type": "git",
@@ -61,6 +63,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "flow-bin": "^0.59.0",
     "jest": "^22.4.3",
+    "jest-t-assert": "^0.2.0",
     "lev": "^3.3.1",
     "pre-commit": "^1.2.2"
   },
