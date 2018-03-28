@@ -1,7 +1,7 @@
 // @flow
 import type { Category, Twitts } from '../type'
 import uuid from 'uuid'
-import level from 'levelup'
+import level from 'level-party'
 
 const db = level('./data/twitts')
 
