@@ -5,6 +5,7 @@ import level from 'level-party'
 
 import { tokenizeAndStem } from '../twitter/parser'
 
+// TODO here allow change of db
 const db = level('./data/db')
 const nb = bayes(db)
 

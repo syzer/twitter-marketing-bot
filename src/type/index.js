@@ -101,3 +101,5 @@ export type TwitterResponse = {
   statuses: [Array<Twitt>],
   search_metadata: TwitterSearchMetadata,
 }
+
+export type UserHandle = string

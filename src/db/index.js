@@ -3,6 +3,7 @@ import type { Category, Twitts } from '../type'
 import uuid from 'uuid'
 import level from 'level-party'
 
+// TODO here ability to pick different db
 const db = level('./data/twitts')
 
 const newKey = (category: Category, id = uuid.v1()) => `${category}-${id}`

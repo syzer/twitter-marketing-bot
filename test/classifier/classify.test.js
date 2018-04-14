@@ -1,3 +1,4 @@
+// @flow
 import test from 'jest-t-assert'
 import classify, { classifyLabels } from '../../src/classifier/classify'
 

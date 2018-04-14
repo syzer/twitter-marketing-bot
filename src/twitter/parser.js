@@ -29,4 +29,5 @@ const tokenize = (str: string) => addEmoji(
   // $FlowOk
   str.match(isEmoji))
 
-export const tokenizeAndStem = pipe(parseTweet, tokenize, joinWords)
+type TokenizeAnsStem = string => string
+export const tokenizeAndStem: TokenizeAnsStem = pipe(parseTweet, tokenize, joinWords)

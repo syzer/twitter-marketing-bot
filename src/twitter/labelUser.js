@@ -1,6 +1,6 @@
 // @flow
 // TODO nodemon -q -w ./src/ -e js -x 'babel-node src/twitter/labelUser.js'
-import type { Twitt } from '../type'
+import type { Twitt, UserHandle } from '../type'
 
 import _ from 'lodash'
 import { countBy, head, identity, last, pipeP, pluck, sortBy, toPairs } from 'ramda'
@@ -22,7 +22,7 @@ const client = new Twitter({
   access_token_secret
 })
 
-const checkUserCategory = (user: string): Promise<Array<Twitt>> =>
+const fetchUserStatuses = (user: string): Promise<Array<Twitt>> =>
   client.get('statuses/user_timeline', {
     screen_name: user,
     include_rts: false
@@ -30,17 +30,19 @@ const checkUserCategory = (user: string): Promise<Array<Twitt>> =>
 
 const labelUser = (twitterHandle: string) =>
   // $FlowOk
-  checkUserCategory(twitterHandle)
+  fetchUserStatuses(twitterHandle)
     .then(pluck('text'))
     .then(twitts =>
       Promise.all(twitts
         .map(classify)))
     .then(countBy(identity))
 
-const bestLabelForUser = pipeP(labelUser, toPairs, sortBy(last), last, head)
+type BestLabelForUser = UserHandle => string
+const bestLabelForUser: BestLabelForUser = pipeP(labelUser, toPairs, sortBy(last), last, head)
 
 export {
   labelUser,
+  fetchUserStatuses,
   bestLabelForUser
 }
 
