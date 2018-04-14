@@ -1,7 +1,7 @@
 # wat
 
 Marketing tool for twitter,
-Find potential customers interested in ex: going to your gym, or intrereted in your hosted event (like leanpoker).
+Find potential customers interested in ex: going to your gym, or interested in your hosted event (like leanpoker competition).
 
 # how
 
