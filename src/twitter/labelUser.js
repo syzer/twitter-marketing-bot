@@ -22,10 +22,11 @@ const client = new Twitter({
   access_token_secret
 })
 
-const fetchUserStatuses = (user: string): Promise<Array<Twitt>> =>
+const fetchUserStatuses = (user: string, howMany: number = 200): Promise<Array<Twitt>> =>
   client.get('statuses/user_timeline', {
     screen_name: user,
-    include_rts: false
+    include_rts: false,
+    count: howMany
   })
 
 const labelUser = (twitterHandle: string) =>

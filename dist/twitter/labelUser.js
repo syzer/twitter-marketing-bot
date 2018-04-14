@@ -37,9 +37,10 @@ const client = new _twitter2.default({
   access_token_secret
 });
 
-const fetchUserStatuses = user => client.get('statuses/user_timeline', {
+const fetchUserStatuses = (user, howMany = 200) => client.get('statuses/user_timeline', {
   screen_name: user,
-  include_rts: false
+  include_rts: false,
+  count: howMany
 });
 
 const labelUser = (twitterHandle
