@@ -5,6 +5,13 @@ Find potential customers interested in ex: going to your gym, or interested in y
 
 # how
 
+## Get Twitter api access keys
+and after 
+```
+cp .env.dist .env
+```
+put them in .env file
+
 ```bash
 git clone https://github.com/syzer/twitter-marketing-bot.git
 cd twitter-marketing-bot
