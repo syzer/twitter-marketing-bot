@@ -22,6 +22,15 @@ cp .env.dist .env
 npm start
 ```
 
+## If build fails
+you need working c++ compiler to compile leveldb database(it's like Sqllite but more key-valye and faster)
+ex on mac:
+```bash
+xcode-select --install 
+#and then 
+sudo xcodebuild -license accept
+```
+
 # requirements
 
 - node 8+
